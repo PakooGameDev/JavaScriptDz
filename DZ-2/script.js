@@ -251,7 +251,6 @@ function CalculateNumOfDaysImproved(){
             console.error('MonthNumber is incorrect')
             return -1;
     } 
-
 }
 
 console.log(CalculateNumOfDaysImproved());
