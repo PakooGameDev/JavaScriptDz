@@ -3,8 +3,7 @@
 // Task 1 💻
 
 // Написать перебор от 1 до 20, где выведутся все числа кратные трём.
-
-//     Для вычисления кратности обратите внимание на оператор %
+// Для вычисления кратности обратите внимание на оператор %
 
 for (let i = 0; i < 20; i++) {
     if(i % 3 === 0 && i !== 0) console.log(i);  // кратен ли ноль? дискуссионный вопрос, ведь он кратен вообще всему
@@ -14,7 +13,7 @@ for (let i = 0; i < 20; i++) {
 
 // Нам надо идти на работу, но нужно проверить все ли мы взяли или нет? Нам точно нужны ключи документы и ручка, но из еды нам надо яблоко или апельсин. 
 // Для решения этой задачи нам помогут логические операторы || &&.
-//     Ответ поместите в переменную shouldGoToWork
+// Ответ поместите в переменную shouldGoToWork
 
     let key = true
     let documents = true
@@ -30,11 +29,11 @@ for (let i = 0; i < 20; i++) {
 
 // Напишите программу, которая спрашивает у пользователя номер года, а затем выводит на экран, високосный ли это год.
 
-    const KIND_OF_YEAR = (yearNumber) => {
+    const getKindOfYear = (yearNumber) => {
         return (yearNumber % 4 === 0) ? "Високосный" : "Не високосный";
     }
 
-    console.log(KIND_OF_YEAR(1024))
+    console.log(getKindOfYear(1024))
 
 // Task 4 💻
 
@@ -44,29 +43,26 @@ for (let i = 0; i < 20; i++) {
 // 2. Если число делится без остатка на 3 выводим сообшение Buz
 // 3. Если число делится без остатка и на 3 и на 5 выводим сообшение FizBuz
 
-const CHECK_MULTIPLICITY = (number) => {
-    if ((number % 5 === 0) && (number % 3 !== 0)) {
-        return 'Fiz';
+const checkMultiplicity = (number) => {   
+    switch (number){
+        case (number % 5 === 0 && number % 3 === 0):
+            return 'FizBuz';
+        case (number % 5 === 0):
+            return 'Fiz';
+        case (number % 3 === 0):
+            return 'Buz';
+        default: 
+            return 'NotFizNorBuz';
     }
-    if ((number % 3 === 0) && (number % 3 !== 0)) {
-        return 'Buz';
-    }         
-    if ((number % 5 === 0) && (number % 3 === 0)) {
-        return 'FizBuz';
-    }       
-    return 'NotFizNorBuz';
 }
 
-console.log(CHECK_MULTIPLICITY(15))
+console.log(checkMultiplicity(15))
 
 // Task 6 💻
 
 // Используя конструкцию switch, напишите программу, которая спрашивает у пользователя номер месяца и года, а затем выводит на экран количество дней в этом месяце.
-
 // Если номер месяца введён неверно - напишите об этом в консоль (можно использовать console.error())
-
 // используйте метод для определения високосного года из задания 3
-
 
 function CalculateNumOfDays(){
     let EnteredDate = prompt('Введите год и месяц через запятую').trim().split(',');
@@ -81,20 +77,6 @@ function CalculateNumOfDays(){
         MonthNumber:  EnteredDate[1],
     };
 
-    /* 
-        if ((Date.MonthNumber === 2)) {
-            return KIND_OF_YEAR(Date.YearNumber) === 'Високосный' ? 28 : 29;
-        } 
-        
-        if (Date.MonthNumber > 7) {
-            return 30 + Date.MonthNumber + 1 % 2;
-        }  else {
-            return 30 + Date.MonthNumber % 2;
-        }
-    */ 
-
-    // а потом я дочитал задание... 
-    
     switch (Number(Date.MonthNumber)) {
         case 1:
         case 3:
@@ -110,14 +92,28 @@ function CalculateNumOfDays(){
         case 11:
             return 30;
         case 2:
-            return KIND_OF_YEAR(Date.YearNumber) === 'Високосный' ? 28 : 29;
+            return getKindOfYear(Date.YearNumber) === 'Високосный' ? 28 : 29;
         default:
             console.error('MonthNumber is incorrect')
             return -1;
     } 
+    /* 
+        if ((Date.MonthNumber === 2)) {
+            return getKindOfYear(Date.YearNumber) === 'Високосный' ? 28 : 29;
+        } 
+        
+        if (Date.MonthNumber > 7) {
+            return 30 + Date.MonthNumber + 1 % 2;
+        }  else {
+            return 30 + Date.MonthNumber % 2;
+        }
+    */ 
 }
 
 //console.log(CalculateNumOfDays());
+
+
+
 
 // ADVANCED level
 // Task 1 👨‍🏫
@@ -184,20 +180,7 @@ for (let i = 0; i < 6; i++) {
 // Task 3 👨‍🏫
 
 // Дополните результат задания 6 так, чтобы программа спрашивала пользователя до тех пор, пока он не введёт корректное значение или напишет в окошко prompt() специальное стоп-слово.
-
-//     Вам понадобится бесконечный цикл
-
-    // let i = 0;
-    // function listener(){
-    //     if (i < 8) {
-    //         console.log(i++);
-    //         setTimeout(() => {  
-    //             listener();
-    //         }, 1000);
-    //     } 
-    // }
-
-    // listener();
+// Вам понадобится бесконечный цикл
 
 function CalculateNumOfDaysImproved(){
     let EnteredDate = prompt('Введите год и месяц через запятую').trim().split(',');
@@ -214,9 +197,9 @@ function CalculateNumOfDaysImproved(){
     // }
 
     // или
-
+    let stopWord = '666';
     let listener = () => {
-        if ((!(EnteredDate[1] > 0 && EnteredDate[1] < 13) && ((EnteredDate[1] !== null ||  EnteredDate[1] !== undefined) && (EnteredDate[0] !== null ||  EnteredDate[0] !== undefined)))) {
+        if (EnteredDate[1] === stopWord || (!(EnteredDate[1] > 0 && EnteredDate[1] < 13) && ((EnteredDate[1] !== null ||  EnteredDate[1] !== undefined) && (EnteredDate[0] !== null ||  EnteredDate[0] !== undefined)))) {
             console.log('Month number is incorrect');
             EnteredDate = prompt('Введите год и месяц через запятую').trim().split(',');
             setTimeout(() => {  
@@ -246,7 +229,7 @@ function CalculateNumOfDaysImproved(){
         case 11:
             return 30;
         case 2:
-            return KIND_OF_YEAR(Date.YearNumber) === 'Високосный' ? 28 : 29;
+            return getKindOfYear(Date.YearNumber) === 'Високосный' ? 28 : 29;
         default:
             console.error('MonthNumber is incorrect')
             return -1;
@@ -254,3 +237,8 @@ function CalculateNumOfDaysImproved(){
 }
 
 console.log(CalculateNumOfDaysImproved());
+
+
+
+
+
