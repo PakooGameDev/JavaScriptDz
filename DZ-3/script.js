@@ -91,10 +91,7 @@ console.log(safeMul(5, "5"));
 // Task 1 👨‍🏫
 
 const checkTriangle = (a, b, c) => {
-    if (a + b <= c || a + c <= b || b + c <= a) {
-        return false;
-    }
-    return true;
+    return !(a + b <= c || a + c <= b || b + c <= a);
 }
 
 console.log(checkTriangle(3, 4, 5));
@@ -196,3 +193,4 @@ console.log(getSquare(1, 1)); // 0
 console.log(getSquare(2, 1)); // 1
 console.log(getSquare(2, 2)); // 2
 console.log(getSquare(3, 2)); // 3
+console.log(getSquare(3, 3)); // 3
