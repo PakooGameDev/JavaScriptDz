@@ -78,7 +78,8 @@ for (let key in student) {
         sum += salaries[key]
     }
 
-    console.log(sum)
+    console.log(sum / Object.keys(salaries).length)
+
 
 // Task 5 🖥
 
@@ -111,7 +112,7 @@ const animals = {
    },
 }
 
-console.log(animals && animals.bird && animals.bird.name);
+console.log(animals.bird?.name);
 
 
 // Task 7 🖥
